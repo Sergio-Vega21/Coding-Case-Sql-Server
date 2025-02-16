@@ -5,3 +5,5 @@ python -m venv env
 pip install django djangorestframework django-mssql-backend
 ## Tercer comando 
 django-admin startproject core .
+## Cuarto comando 
+pip install mssql-django
