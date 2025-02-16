@@ -18,15 +18,19 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 from api.views import UsuarioViewSet
-from api.views import ejecutar_consulta_por_rol
+from api.views import AuditoriaAccesoViewSet
+from api.views import ConsultaRolViewSet
 
 
 router = DefaultRouter()
 router.register(r'usuarios', UsuarioViewSet)
+router.register(r'auditoria', AuditoriaAccesoViewSet, basename='auditoria')
+router.register(r'consulta-rol', ConsultaRolViewSet, basename='consulta-rol')
+
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include(router.urls)),
-     path('consulta-rol/<int:id_usuario>/', ejecutar_consulta_por_rol),
+
 ]

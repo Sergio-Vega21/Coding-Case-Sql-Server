@@ -9,29 +9,43 @@ from rest_framework import generics , status
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from django.http import HttpResponse
+from .models import AuditoriaAcceso
+from .serializers import AuditoriaAccesoSerializer
+
 
 
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
 
-def ejecutar_consulta_por_rol(request, id_usuario):
-    try:
-        with connection.cursor() as cursor:
-            # Ejecutar el procedimiento almacenado
-            cursor.execute("EXEC EjecutarConsultaSegunRol @idUsuario = %s", [id_usuario])
+class AuditoriaAccesoViewSet(viewsets.ReadOnlyModelViewSet):  # Solo lectura
+    queryset = AuditoriaAcceso.objects.all().order_by('-fechaAcceso')
+    serializer_class = AuditoriaAccesoSerializer
 
-            # Ahora obtener los datos desde la tabla temporal global
-            cursor.execute("SELECT * FROM ##TempTable")
-            resultados = cursor.fetchall()
+class ConsultaRolViewSet(viewsets.ViewSet):
 
-            # Si hay resultados, estructurarlos en JSON
-            if resultados:
-                columnas = [col[0] for col in cursor.description]  # Obtener nombres de columnas
-                data = [dict(zip(columnas, row)) for row in resultados]
-                return JsonResponse({"data": data}, safe=False)
-            else:
-                return JsonResponse({"error": "No hay datos para este usuario"}, status=404)
+    def list(self, request):  
+        return Response({
+            "detalle": "Para consultar un usuario específico, usa /consulta-rol/{id_usuario}/"
+        })  
 
-    except Exception as e:
-        return JsonResponse({"error": str(e)}, status=500)
+    def retrieve(self, request, pk=None):  # pk será el id_usuario
+        try:
+            with connection.cursor() as cursor:
+                # Ejecutar el procedimiento almacenado
+                cursor.execute("EXEC EjecutarConsultaSegunRol @idUsuario = %s", [pk])
+
+                # Obtener los datos desde la tabla temporal global
+                cursor.execute("SELECT * FROM ##TempTable")
+                resultados = cursor.fetchall()
+
+                # Si hay resultados, estructurarlos en JSON
+                if resultados:
+                    columnas = [col[0] for col in cursor.description]  
+                    data = [dict(zip(columnas, row)) for row in resultados]
+                    return Response({"data": data})
+                else:
+                    return Response({"error": "No hay datos para este usuario"}, status=404)
+
+        except Exception as e:
+            return Response({"error": str(e)}, status=500)
