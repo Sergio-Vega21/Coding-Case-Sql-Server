@@ -1,12 +1,14 @@
 from django.db import models
 
+#Modelo que representa los roles en el sistema
 class Rol(models.Model):
     idRol = models.AutoField(primary_key=True)
     nombreRol = models.CharField(max_length=50, unique=True)
 
     class Meta:
-        db_table = 'Roles'  # Nombre exacto de la tabla en SQL Server
+        db_table = 'Roles'  
 
+#Modelo que representa los departamentos en el sistema
 class Departamento(models.Model):
     idDept = models.AutoField(primary_key=True)
     nombreDept = models.CharField(max_length=100, unique=True)
@@ -14,6 +16,7 @@ class Departamento(models.Model):
     class Meta:
         db_table = 'Departamentos'
 
+#Modelo que representa los usuarios en el sistema
 class Usuario(models.Model):
     idUsuario = models.AutoField(primary_key=True)
     nombreUsuario = models.CharField(max_length=100)
@@ -25,6 +28,7 @@ class Usuario(models.Model):
     class Meta:
         db_table = 'Usuarios'
 
+#Modelo que representa los pagos  en el sistema
 class Pago(models.Model):
     idPago = models.AutoField(primary_key=True)
     idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, db_column="idUsuario")
@@ -34,6 +38,7 @@ class Pago(models.Model):
     class Meta:
         db_table = 'Pagos'
 
+#Modelo que almacena los accesos al sistema mediante la tabla AuditoriaAccesos
 class AuditoriaAcceso(models.Model):
     idAcceso = models.AutoField(primary_key=True)
     idUsuario = models.ForeignKey(Usuario, on_delete=models.CASCADE, db_column="idUsuario")

@@ -13,15 +13,17 @@ from .models import AuditoriaAcceso
 from .serializers import AuditoriaAccesoSerializer
 
 
-
+#ViewSet para manejar CRUD de los usuarios
 class UsuarioViewSet(viewsets.ModelViewSet):
     queryset = Usuario.objects.all()
     serializer_class = UsuarioSerializer
 
-class AuditoriaAccesoViewSet(viewsets.ReadOnlyModelViewSet):  # Solo lectura
+#ViewSet para lectura de AuditoriaAccesos
+class AuditoriaAccesoViewSet(viewsets.ReadOnlyModelViewSet):  
     queryset = AuditoriaAcceso.objects.all().order_by('-fechaAcceso')
     serializer_class = AuditoriaAccesoSerializer
 
+#ViewSet personalizado para consultar los permisos de un usuario segun su rol
 class ConsultaRolViewSet(viewsets.ViewSet):
 
     def list(self, request):  
@@ -29,7 +31,7 @@ class ConsultaRolViewSet(viewsets.ViewSet):
             "detalle": "Para consultar un usuario específico, usa /consulta-rol/{id_usuario}/"
         })  
 
-    def retrieve(self, request, pk=None):  # pk será el id_usuario
+    def retrieve(self, request, pk=None):  # pk es el id_usuario
         try:
             with connection.cursor() as cursor:
                 # Ejecutar el procedimiento almacenado
