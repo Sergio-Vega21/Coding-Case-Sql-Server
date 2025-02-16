@@ -13,5 +13,5 @@ end;
 
 
 /*Ejemplo supervisor 12 */
-EXEC VistaSupervisor @idSupervisor = 12;
+/*EXEC VistaSupervisor @idSupervisor = 12;*/
 

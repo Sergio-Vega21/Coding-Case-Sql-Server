@@ -11,4 +11,4 @@ end;
 
 
 /*Ejemplo Empleado 23*/
-EXEC VistaEmpleado @idEmpleado=23;
+/*EXEC VistaEmpleado @idEmpleado=23;*/

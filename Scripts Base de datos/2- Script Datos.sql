@@ -17,7 +17,7 @@ VALUES
     ('Ventas'),
     ('Marketing'),
     ('Operaciones'),
-    ('Atención al Cliente');
+    ('Atenciï¿½n al Cliente');
 
 
 /*Creacion Registro usuario -> administrador*/
@@ -28,38 +28,38 @@ VALUES ('Luis Vanegas', 'LuisVanegas@gmail.com', 1, NULL, NULL);
 /*Creacion Registro usuario -> Gerentes*/
 INSERT INTO Usuarios (nombreUsuario, emailUsuario, idRol, idDept, idJefe)
 VALUES 
-    ('Carlos Gómez', 'CarlosGomez@gmail.com', 2, 1, 1), -- Gerente de Recursos Humanos
-    ('Ana Martínez', 'AnaMartinez@gmail.com', 2, 2, 1), -- Gerente de Finanzas
-    ('Luis Rodríguez', 'LuisRodriguez@gmail.com', 2, 3, 1), -- Gerente de TI
-    ('Marta Sánchez', 'MartaSanchez@gmail.com', 2, 4, 1), -- Gerente de Ventas
-    ('Pedro López', 'PedroLopez@gmail.com', 2, 5, 1), -- Gerente de Marketing
-    ('Sofía Ramírez', 'SofiaRamirez@gmail.com', 2, 6, 1), -- Gerente de Operaciones
-    ('Javier Torres', 'JavierTorres@gmail.com', 2, 7, 1); -- Gerente de Atención al Cliente
+    ('Carlos Gï¿½mez', 'CarlosGomez@gmail.com', 2, 1, 1), -- Gerente de Recursos Humanos
+    ('Ana Martï¿½nez', 'AnaMartinez@gmail.com', 2, 2, 1), -- Gerente de Finanzas
+    ('Luis Rodrï¿½guez', 'LuisRodriguez@gmail.com', 2, 3, 1), -- Gerente de TI
+    ('Marta Sï¿½nchez', 'MartaSanchez@gmail.com', 2, 4, 1), -- Gerente de Ventas
+    ('Pedro Lï¿½pez', 'PedroLopez@gmail.com', 2, 5, 1), -- Gerente de Marketing
+    ('Sofï¿½a Ramï¿½rez', 'SofiaRamirez@gmail.com', 2, 6, 1), -- Gerente de Operaciones
+    ('Javier Torres', 'JavierTorres@gmail.com', 2, 7, 1); -- Gerente de Atenciï¿½n al Cliente
 
 /*Creacion Registro usuario -> supervisores*/
 
 INSERT INTO Usuarios (nombreUsuario, emailUsuario, idRol, idDept, idJefe)
 VALUES 
     -- Recursos Humanos
-    ('Andrea Ramírez', 'AndreaRamirez@gmail.com', 3, 1, (SELECT idUsuario FROM Usuarios WHERE idDept = 1 AND idRol = 2)),
-    ('Diego Fernández', 'DiegoFernandez@gmail.com', 3, 1, (SELECT idUsuario FROM Usuarios WHERE idDept = 1 AND idRol = 2)),
+    ('Andrea Ramï¿½rez', 'AndreaRamirez@gmail.com', 3, 1, (SELECT idUsuario FROM Usuarios WHERE idDept = 1 AND idRol = 2)),
+    ('Diego Fernï¿½ndez', 'DiegoFernandez@gmail.com', 3, 1, (SELECT idUsuario FROM Usuarios WHERE idDept = 1 AND idRol = 2)),
     -- Finanzas
-    ('Beatriz Gómez', 'BeatrizGomez@gmail.com', 3, 2, (SELECT idUsuario FROM Usuarios WHERE idDept = 2 AND idRol = 2)),
+    ('Beatriz Gï¿½mez', 'BeatrizGomez@gmail.com', 3, 2, (SELECT idUsuario FROM Usuarios WHERE idDept = 2 AND idRol = 2)),
     ('Fernando Torres', 'FernandoTorres@gmail.com', 3, 2, (SELECT idUsuario FROM Usuarios WHERE idDept = 2 AND idRol = 2)),
     -- TI
     ('Gabriela Castro', 'GabrielaCastro@gmail.com', 3, 3, (SELECT idUsuario FROM Usuarios WHERE idDept = 3 AND idRol = 2)),
     ('Hugo Morales', 'HugoMorales@gmail.com', 3, 3, (SELECT idUsuario FROM Usuarios WHERE idDept = 3 AND idRol = 2)),
     -- Ventas
-    ('Isabel Díaz', 'IsabelDiaz@gmail.com', 3, 4, (SELECT idUsuario FROM Usuarios WHERE idDept = 4 AND idRol = 2)),
+    ('Isabel Dï¿½az', 'IsabelDiaz@gmail.com', 3, 4, (SELECT idUsuario FROM Usuarios WHERE idDept = 4 AND idRol = 2)),
     ('Juan Vega', 'JuanVega@gmail.com', 3, 4, (SELECT idUsuario FROM Usuarios WHERE idDept = 4 AND idRol = 2)),
     -- Marketing
-    ('Karen Méndez', 'KarenMendez@gmail.comm', 3, 5, (SELECT idUsuario FROM Usuarios WHERE idDept = 5 AND idRol = 2)),
+    ('Karen Mï¿½ndez', 'KarenMendez@gmail.comm', 3, 5, (SELECT idUsuario FROM Usuarios WHERE idDept = 5 AND idRol = 2)),
     ('Leonardo Herrera', 'LeonardoHerrera@gmail.com', 3, 5, (SELECT idUsuario FROM Usuarios WHERE idDept = 5 AND idRol = 2)),
     -- Operaciones
-    ('Marina Suárez', 'MarinaSuarez@gmail.com', 3, 6, (SELECT idUsuario FROM Usuarios WHERE idDept = 6 AND idRol = 2)),
-    ('Nicolás Pardo', 'NicolasPardo@gmail.com', 3, 6, (SELECT idUsuario FROM Usuarios WHERE idDept = 6 AND idRol = 2)),
-    -- Atención al Cliente
-    ('Olga Ríos', 'OlgaRios@gmail.com', 3, 7, (SELECT idUsuario FROM Usuarios WHERE idDept = 7 AND idRol = 2)),
+    ('Marina Suï¿½rez', 'MarinaSuarez@gmail.com', 3, 6, (SELECT idUsuario FROM Usuarios WHERE idDept = 6 AND idRol = 2)),
+    ('Nicolï¿½s Pardo', 'NicolasPardo@gmail.com', 3, 6, (SELECT idUsuario FROM Usuarios WHERE idDept = 6 AND idRol = 2)),
+    -- Atenciï¿½n al Cliente
+    ('Olga Rï¿½os', 'OlgaRios@gmail.com', 3, 7, (SELECT idUsuario FROM Usuarios WHERE idDept = 7 AND idRol = 2)),
     ('Pablo Salazar', 'PabloSalazar@gmail.com', 3, 7, (SELECT idUsuario FROM Usuarios WHERE idDept = 7 AND idRol = 2));
 
 	/*Creacion Registro usuario -> empleados*/
@@ -70,12 +70,12 @@ VALUES
     ('Camila Vargas', 'CamilaVargas@gmail.com', 4, 1, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 1 AND idRol = 3)),
     ('Alejandro Nieto', 'AlejandroNieto@gmail.com', 4, 2, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 2 AND idRol = 3)),
     ('Valentina Paredes', 'ValentinaParedes@gmail.com', 4, 3, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 3 AND idRol = 3)),
-    ('Ricardo Mejía', 'RicardoMejia@gmail.com', 4, 4, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 4 AND idRol = 3)),
-    ('Daniela Gutiérrez', 'DanielaGutierrez@gmail.com', 4, 5, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 5 AND idRol = 3)),
-    ('Julián Castillo', 'JulianCastillo@gmail.com', 4, 6, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 6 AND idRol = 3)),
-    ('Mariana Peña', 'MarianaPena@gmail.com', 4, 7, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 7 AND idRol = 3)),
-    ('Felipe Cárdenas', 'FelipeCardenas@gmail.com', 4, 2, (SELECT  TOP 1 idUsuario FROM Usuarios WHERE idDept = 2 AND idRol = 3)),
-    ('Natalia León', 'NataliaLeon@gmail.com', 4, 3, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 3 AND idRol = 3));
+    ('Ricardo Mejï¿½a', 'RicardoMejia@gmail.com', 4, 4, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 4 AND idRol = 3)),
+    ('Daniela Gutiï¿½rrez', 'DanielaGutierrez@gmail.com', 4, 5, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 5 AND idRol = 3)),
+    ('Juliï¿½n Castillo', 'JulianCastillo@gmail.com', 4, 6, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 6 AND idRol = 3)),
+    ('Mariana Peï¿½a', 'MarianaPena@gmail.com', 4, 7, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 7 AND idRol = 3)),
+    ('Felipe Cï¿½rdenas', 'FelipeCardenas@gmail.com', 4, 2, (SELECT  TOP 1 idUsuario FROM Usuarios WHERE idDept = 2 AND idRol = 3)),
+    ('Natalia Leï¿½n', 'NataliaLeon@gmail.com', 4, 3, (SELECT TOP 1 idUsuario FROM Usuarios WHERE idDept = 3 AND idRol = 3));
 
 
 		/*Creacion Registro Pagos*/
@@ -116,10 +116,13 @@ VALUES
     (27, 5600.00, '2025-01-28'),
     (30, 5500.60, '2025-02-01'),
     (32, 5400.30, '2025-02-05');
-	
+
+-- Rol contador -> Solo pueder ver los pagos de todos
+
 INSERT INTO Roles (nombreRol) VALUES 
 ('Contador');
 
+-- Usuarios contadores
 
 INSERT INTO Usuarios (nombreUsuario, emailUsuario, idRol, idDept, idJefe)
 VALUES 
