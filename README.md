@@ -9,5 +9,5 @@ django-admin startproject core .
 pip install mssql-django
 ## Quinto comando "Para cambiar el protocolo en el puerto y lograr la conexion" 
 netsh advfirewall firewall add rule name="SQL Server" dir=in action=allow protocol=TCP localport=1433
-## Comando para generacion de PDF
+## Sexto Comando para generacion de PDF
 pip install reportlab
